@@ -1,7 +1,9 @@
 import express, { Request, Response } from "express";
 import helmet from 'helmet';
 
+const path = require( 'path' );
 const cors = require( 'cors' );
+const apiDocsPath = path.join( __dirname, './apidoc' );
 
 const Dishes = require( './src/dishes/dishes-router' );
 const Recipes = require( './src/recipies/recipies-router' );
@@ -14,8 +16,6 @@ server.use( express.json() );
 
 server.use( '/dishes', Dishes );
 server.use( '/recipes', Recipes );
-server.use( '/', ( req: Request, res: Response ) => {
-    res.status( 200 ).json( { message: "yup it works." } );
-} );
+server.use( '/', express.static( apiDocsPath ) );
 
 export default server;
