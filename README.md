@@ -1,44 +1,306 @@
-# Recipe Book
+# webdb-iv-challenge v1.0.0
 
-## Topics
+Api to store and read dishes, recipes, and ingredients of the recipes.
 
-- database modeling.
-- migration scripts.
-- seeding.
-- knex.
+- [Dishes](#dishes)
+	- [Create a new dish](#create-a-new-dish)
+	- [Gets dish and recipes](#gets-dish-and-recipes)
+	- [Gets all dishes](#gets-all-dishes)
+	
+- [Recipes](#recipes)
+	- [Create recipe.](#create-recipe.)
+	- [Get recipe](#get-recipe)
+	- [Get all recipes](#get-all-recipes)
+	
 
-## Assignment
 
-Design the **data model** for a _recipe book_ application, then use `Knex migrations and seeding` functionality to build a `SQLite3` database based on the model and seed it with test data.
+# Dishes
 
-The requirements for the system, as stated by the client are:
+## Create a new dish
 
-- have a way to manage dishes. A **dish** is something the client wants to cook, like _pizza_ or _tacos_.
-- have a way to manage recipes. A **dish** can have different recipes for tacos, like _tex-mex_ or _granny's_. A **recipe** belongs only to one **dish**.
-- have a way to manage ingredients.
-- a **recipe** could have more than one **ingredient** and the same **ingredient** can be used in multiple recipes. Examples are _"cup of corn flour"_ or _"gram of butter"_.
-- when saving the ingredients for a **recipe** capture the quantity required for that **ingredient** as a floating number.
-- have a way to save instructions for cooking a recipe.
-- have a way to pick a **dish** and a **recipe** and get a _shopping list_ with all the ingredients, and quantity of each, needed to cook the **dish**.
 
-In addition to the `migrations` and `seeding` scripts, write a data access file that **exports** an object with the following functions:
 
-- `getDishes()`: should return a list of all dishes in the database.
-- `addDish(dish)`: should add the **dish** to the database and return the `id` of the new **dish**.
-- `getDish(id)`: should return the **dish** with the provided `id` and include a list of the related recipes.
-- `getRecipes()`: should return a list of all recipes in the database including the **dish** they belong to.
-- `addRecipe(recipe)`: should add a **recipe** to the database and return the `id` of the new **recipe**.
+	POST /dishes
 
-Organize and name your files anyway you see fit.
 
-## Stretch Problems
+### Parameters
 
-- design and build a RESTful API that makes use of your data access file and publishes endpoints that a client application can use to manage all resources.
-- add a method called `getRecipe(id)` to your data access library that should return the recipe with the provided `id`. The recipe should include:
-  - name of the dish.
-  - name of the recipe.
-  - the list of ingredients with the quantity.
-- follow the same pattern to add the CRUD operations for other entities in the system.
-- add _units of measure_ support for the **ingredient**s.
-- design and build a front end client for your API.
-- add a `getShoppingList(recipeId)` that returns a list of all the recipe's ingredients including the quantity of each.
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| name			| String			|  <p>Name of the dish.</p>							|
+
+### Examples
+
+Example Post:
+
+```
+axios.post('/dishes/',
+{
+     name: "String"
+});
+```
+
+### Success Response
+
+Success Example:
+
+```
+
+{
+    "id": 1,
+    "name": "Dish Name"
+}
+```
+### Error Response
+
+Error Example:
+
+```
+ERROR XXX
+{
+    "status": xxx,
+    "message": "Some Error Message"
+}
+```
+## Gets dish and recipes
+
+
+
+	GET /dishes/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| id			| Number			|  <p>Dish ID</p>							|
+
+### Examples
+
+Example get:
+
+```
+axios.get('/dishes/4');
+```
+
+### Success Response
+
+Example:
+
+```
+
+ {
+    "id": 1,
+    "name": "Tacos",
+    "recipes": [
+        {
+            "id": 1,
+            "name": "Fish Tacos",
+            "dish_id": 1,
+            "instructions": "Deep fry fish, Place into tortilla."
+        },
+        {
+            "id": 6,
+            "name": "Beef Tacos",
+            "dish_id": 1,
+            "instructions": "Cook beef add to tacos"
+        }
+    ]
+}
+```
+### Error Response
+
+Error Example:
+
+```
+ERROR XXX
+{
+    "status": xxx,
+    "message": "Some Error Message"
+}
+```
+## Gets all dishes
+
+
+
+	GET /dishes
+
+
+### Examples
+
+Example get:
+
+```
+axios.get('/dishes');
+```
+
+### Success Response
+
+Success Example:
+
+```
+[
+    {
+        "id": 1,
+        "name": "Tacos"
+    },
+    {
+        "id": 2,
+        "name": "Ribs"
+    }
+]
+```
+### Error Response
+
+Error Example:
+
+```
+ERROR XXX
+{
+    "status": xxx,
+    "message": "Some Error Message"
+}
+```
+# Recipes
+
+## Create recipe.
+
+
+
+	POST /recipes/
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| name			| String			|  <p>Name of the recipe.</p>							|
+| instructions			| String			|  <p>Recipe instructions.</p>							|
+| id			| Number			|  <p>ID of the dish the recipe is for.</p>							|
+
+### Examples
+
+Example post:
+
+```
+axios.post('/recipes',
+{
+    name: "Name of dish",
+    instructions: "Instructions to prepare dish",
+    dish_id: 4
+})
+```
+
+### Success Response
+
+Success Example:
+
+```
+
+{
+    "id":   30,
+   "name": "Fish Tacos",
+   "instructions": "Deep fry fish, place into tortilla.",
+   "dis_id": "4"
+}
+```
+### Error Response
+
+Error Example:
+
+```
+ERROR XXX
+{
+    "status": xxx,
+    "message": "Some Error Message"
+}
+```
+## Get recipe
+
+
+
+	GET /recipes/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| id			| Number			|  <p>ID of the recipe.</p>							|
+
+### Examples
+
+Example get:
+
+```
+axios.get('/recipes/4');
+```
+
+### Success Response
+
+Example:
+
+```
+
+{
+   "name": "Fish Tacos",
+   "instructions": "Deep fry fish, place into tortilla.",
+   "dish_name": "Tacos"
+}
+```
+### Error Response
+
+Error Example:
+
+```
+ERROR XXX
+{
+    "status": xxx,
+    "message": "Some Error Message"
+}
+```
+## Get all recipes
+
+
+
+	GET /recipes/
+
+
+### Examples
+
+Example get:
+
+```
+axios.get('/recipes');
+```
+
+### Success Response
+
+Example:
+
+```
+[
+ {
+    "name": "Fish Tacos",
+    "instructions": "Deep fry fish, place into tortilla.",
+    "dish_name": "Tacos"
+ },
+ {
+    "name": "BBQ Ribs",
+    "instructions":  "Cover rack in bbq sauces and place in over at 400 till internal temperature is good.",
+      "dish_name": "Ribs"
+ }
+]
+```
+### Error Response
+
+Error Example:
+
+```
+ERROR XXX
+{
+    "status": xxx,
+    "message": "Some Error Message"
+}
+```
+
