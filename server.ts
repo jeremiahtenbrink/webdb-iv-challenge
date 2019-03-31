@@ -1,12 +1,15 @@
 import express, { Request, Response } from "express";
 import helmet from 'helmet';
 
-const Dishes = require( './dishes/dishes-router' );
-const Recipes = require( './recipies/recipies-router' );
+const cors = require( 'cors' );
+
+const Dishes = require( './src/dishes/dishes-router' );
+const Recipes = require( './src/recipies/recipies-router' );
 
 const server = express();
 
 server.use( helmet() );
+server.use( cors() );
 server.use( express.json() );
 
 server.use( '/dishes', Dishes );

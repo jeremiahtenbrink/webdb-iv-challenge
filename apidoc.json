@@ -1,0 +1,19 @@
+{
+  "name": "webdb-iv-challenge",
+  "version": "1.0.0",
+  "description": "Backend Api",
+  "title": "Custom apiDoc browser title",
+  "url": "http://localhost:3200",
+  "sampleUrl": "http://localhost:3200",
+  "header": {
+    "title": "Dishes and Recipes",
+    "filename": "header.md"
+  },
+  "footer": {
+    "title": "My own footer title",
+    "filename": "footer.md"
+  },
+  "template": {
+    "withGenerator": true
+  }
+}
