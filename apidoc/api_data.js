@@ -64,7 +64,7 @@ define({ "api": [
     "groupTitle": "Dishes",
     "sampleRequest": [
       {
-        "url": "http://localhost:3200/dishes"
+        "url": "https://webdb-iv-challenge.herokuapp.com/dishes"
       }
     ]
   },
@@ -133,7 +133,7 @@ define({ "api": [
     "groupTitle": "Dishes",
     "sampleRequest": [
       {
-        "url": "http://localhost:3200/dishes"
+        "url": "https://webdb-iv-challenge.herokuapp.com/dishes"
       }
     ]
   }

@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Backend Api",
   "title": "Custom apiDoc browser title",
-  "url": "http://localhost:3200",
-  "sampleUrl": "http://localhost:3200",
+  "url": "https://webdb-iv-challenge.herokuapp.com",
+  "sampleUrl": "https://webdb-iv-challenge.herokuapp.com",
   "header": {
     "title": "Dishes and Recipes",
     "filename": "header.md"
