@@ -10,8 +10,6 @@ export const getDish = ( id: number ) => {
     const recipies = database( 'recipes' ).where( { dish_id: id } );
     
     return database( 'dishes' )
-        .leftJoin( 'recipes', 'recipes.dish_id', 'dishes.id' )
-        .select( 'dishes.name', recipies )
         .where( { 'dishes.id': id } ).first();
 };
 

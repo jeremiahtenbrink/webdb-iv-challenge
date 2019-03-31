@@ -1,7 +1,3 @@
-# Example text from footer.md
 
-This text is from file "footer.md".
+@CopyRight Jeremiah Tenbrink.
 
-## HowTo include
-
-Watch header.md for further information.

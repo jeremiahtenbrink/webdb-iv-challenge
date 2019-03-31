@@ -1,7 +1,7 @@
 {
   "name": "webdb-iv-challenge",
   "version": "1.0.0",
-  "description": "Backend Api",
+  "description": "Api to store and read dishes, recipes, and ingredients of the recipes.",
   "title": "Custom apiDoc browser title",
   "url": "https://webdb-iv-challenge.herokuapp.com",
   "sampleUrl": "https://webdb-iv-challenge.herokuapp.com",
@@ -14,6 +14,7 @@
     "filename": "footer.md"
   },
   "template": {
-    "withGenerator": true
+    "withGenerator": true,
+    "withCompare": true
   }
 }

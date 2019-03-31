@@ -7,8 +7,6 @@ exports.getDishes = () => {
 exports.getDish = (id) => {
     const recipies = dbConfig_1.database('recipes').where({ dish_id: id });
     return dbConfig_1.database('dishes')
-        .leftJoin('recipes', 'recipes.dish_id', 'dishes.id')
-        .select('dishes.name', recipies)
         .where({ 'dishes.id': id }).first();
 };
 exports.addDish = (dish) => {
